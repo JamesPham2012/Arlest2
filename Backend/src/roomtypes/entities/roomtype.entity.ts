@@ -11,7 +11,8 @@ export class RoomTypeDetails {
 
   @Column()
   Description: string;
-  
-  @OneToMany(type => Room,room => room) roomlist:Room[];
+
+  @OneToMany(type => Room,room => room) 
+  roomlist:Room[];
 
 }

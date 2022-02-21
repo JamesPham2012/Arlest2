@@ -17,6 +17,4 @@ export class BookingOrder {
     @OneToOne(type => Room, { primary: true })
     @JoinColumn({ name: "RoomID" })
     Room:Room;
-
-  
 }

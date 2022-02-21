@@ -9,7 +9,7 @@ services:
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: admin
-      POSTGRES_DB: BookingRDBMS
+      POSTGRES_DB: Arlest2RDBMS
     ports:
       - "2014:5432"
 
