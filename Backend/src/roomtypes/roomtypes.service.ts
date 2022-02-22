@@ -7,6 +7,7 @@ import { RoomTypeDetails } from './entities/roomtype.entity';
 export class RoomtypesService {
   create(createRoomtypeDto: CreateRoomtypeDto) {
     var entity = new RoomTypeDetails()
+  
     return 'This action adds a new roomtype';
   }
 

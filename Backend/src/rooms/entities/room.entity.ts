@@ -5,9 +5,7 @@ import { CreateRoomDto } from '../dto/create-room.dto';
 
 @Entity()
 export class Room {
-  cvs(createRoomDto: CreateRoomDto) {
-    
-  }
+
   @PrimaryGeneratedColumn()
   RoomID: number;
 
