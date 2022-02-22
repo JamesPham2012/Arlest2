@@ -7,18 +7,11 @@ export class UserEntity {
   UserID: number;
 
   @Column()
-  firstName: string;
+  public firstName: string;
 
   @Column()
-  lastName: string;
+  public lastName: string;
 
   @Column({ unique: true })
-  passport: string;
-
-
-  public cvs(dto:CreateUserDto){
-    this.firstName=dto.firstname;
-    this.lastName=dto.lastname;
-    this.passport=dto.passport
-  }
+  public passport: string;
 }

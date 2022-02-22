@@ -10,14 +10,11 @@ import { UserEntity } from './entities/user.entity';
 export class UsersService {
   constructor(@InjectRepository(UserEntity)
   private usersRepository: Repository<UserEntity>){}
-  create(createUserDto: CreateUserDto) {
-   
-    console.log(createUserDto)
-    console.log(JSON.stringify(createUserDto))
-    console.log(JSON.parse(JSON.stringify(createUserDto)))
-    var entity = this.usersRepository.create(JSON.parse(JSON.stringify(createUserDto)))
+
+  async create(createUserDto: CreateUserDto) {
+    var entity = await this.usersRepository.create(createUserDto)
     console.log(entity)
-    return this.usersRepository.save(entity)
+    return await this.usersRepository.save(entity)
   }
 
   findAll() {

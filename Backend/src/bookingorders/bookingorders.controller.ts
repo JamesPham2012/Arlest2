@@ -18,8 +18,8 @@ export class BookingordersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.bookingordersService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.bookingordersService.findOne(id);
   }
 
   @Patch(':id')

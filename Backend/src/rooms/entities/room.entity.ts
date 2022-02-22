@@ -15,4 +15,5 @@ export class Room {
   @ManyToOne(type => RoomTypeDetails, room =>room.roomlist) 
   @JoinColumn({name:"RoomType"})// naming convention for table 
   RoomType:RoomTypeDetails;     // naming of variable for OOP 
+
 }

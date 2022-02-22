@@ -1,22 +1,25 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateRoomtypeDto } from './dto/create-roomtype.dto';
 import { UpdateRoomtypeDto } from './dto/update-roomtype.dto';
 import { RoomTypeDetails } from './entities/roomtype.entity';
 
 @Injectable()
 export class RoomtypesService {
+  constructor(@InjectRepository(RoomTypeDetails)
+  private roomRepository: Repository<RoomTypeDetails>){}
   create(createRoomtypeDto: CreateRoomtypeDto) {
-    var entity = new RoomTypeDetails()
-  
-    return 'This action adds a new roomtype';
+    var entity = this.roomRepository.create(createRoomtypeDto)
+    return this.roomRepository.save(entity);
   }
 
   findAll() {
     return `This action returns all roomtypes`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} roomtype`;
+  async findOne(id: number) {
+    return await this.roomRepository.findOne(id)
   }
 
   update(id: number, updateRoomtypeDto: UpdateRoomtypeDto) {

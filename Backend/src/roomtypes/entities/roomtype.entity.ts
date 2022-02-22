@@ -15,4 +15,5 @@ export class RoomTypeDetails {
   @OneToMany(type => Room,room => room) 
   roomlist:Room[];
 
+  
 }
