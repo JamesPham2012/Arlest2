@@ -41,4 +41,10 @@ export class RoomsService {
   remove(id: number) {
     return `This action removes a #${id} room`;
   }
+
+  async occupy(id:number){
+    var pre_entity = await this.roomRepository.findOneOrFail({RoomID:id})
+    var post_entity= this.roomRepository.merge(pre_entity,{isVacant:false})
+    return await this.roomRepository.save(post_entity)
+  }
 }

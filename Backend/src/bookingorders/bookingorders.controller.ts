@@ -9,7 +9,7 @@ export class BookingordersController {
 
   @Post()
   create(@Body() createBookingorderDto: CreateBookingorderDto) {
-    return this.bookingordersService.create(createBookingorderDto);
+    return this.bookingordersService.alternateCreate(createBookingorderDto);
   }
 
   @Get()
