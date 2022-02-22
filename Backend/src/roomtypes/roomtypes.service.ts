@@ -1,10 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { CreateRoomtypeDto } from './dto/create-roomtype.dto';
 import { UpdateRoomtypeDto } from './dto/update-roomtype.dto';
+import { RoomTypeDetails } from './entities/roomtype.entity';
 
 @Injectable()
 export class RoomtypesService {
   create(createRoomtypeDto: CreateRoomtypeDto) {
+    var entity = new RoomTypeDetails()
     return 'This action adds a new roomtype';
   }
 

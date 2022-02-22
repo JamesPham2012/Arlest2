@@ -1,9 +1,13 @@
 
 import { RoomTypeDetails } from 'src/roomtypes/entities/roomtype.entity';
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
+import { CreateRoomDto } from '../dto/create-room.dto';
 
 @Entity()
 export class Room {
+  cvs(createRoomDto: CreateRoomDto) {
+    
+  }
   @PrimaryGeneratedColumn()
   RoomID: number;
 

@@ -7,10 +7,13 @@ import { RoomtypesModule } from './roomtypes/roomtypes.module';
 import { BookingordersModule } from './bookingorders/bookingorders.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AdminActionsModule } from './admin-actions/admin-actions.module';
+import { Connection } from 'typeorm';
 
 @Module({
   imports: [TypeOrmModule.forRoot(), UsersModule, RoomsModule, RoomtypesModule, BookingordersModule, AdminActionsModule],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private connection: Connection) {}
+}
