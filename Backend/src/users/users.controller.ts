@@ -32,4 +32,9 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }
+
+  @Post("test1")
+  lambda(){
+    return this.usersService.findbyName()
+  }
 }

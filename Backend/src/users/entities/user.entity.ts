@@ -14,4 +14,7 @@ export class UserEntity {
 
   @Column({ unique: true })
   public passport: string;
+
+  @Column({ type: 'timestamptz',nullable:true,default:null })
+  created_date : Date;
 }

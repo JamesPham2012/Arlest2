@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { BookingordersService } from './bookingorders.service';
 import { CreateBookingorderDto } from './dto/create-bookingorder.dto';
 import { UpdateBookingorderDto } from './dto/update-bookingorder.dto';
+import { BookingOrder } from './entities/bookingorder.entity';
 
 @Controller('bookingorders')
 export class BookingordersController {
@@ -9,7 +10,7 @@ export class BookingordersController {
 
   @Post()
   create(@Body() createBookingorderDto: CreateBookingorderDto) {
-    return this.bookingordersService.alternateCreate(createBookingorderDto);
+    return this.bookingordersService.create1(createBookingorderDto);
   }
 
   @Get()
