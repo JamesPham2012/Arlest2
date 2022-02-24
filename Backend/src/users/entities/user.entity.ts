@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 import { CreateUserDto } from '../dto/create-user.dto';
 
 @Entity("UserEntity")
@@ -14,7 +14,7 @@ export class UserEntity {
 
   @Column({ unique: true })
   public passport: string;
-
-  @Column({ type: 'timestamptz',nullable:true,default:null })
+  @CreateDateColumn()
+  @Column({ type: 'timestamptz' })
   created_date : Date;
 }

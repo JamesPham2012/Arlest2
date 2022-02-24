@@ -13,6 +13,7 @@ export class BookingOrder {
     @Column()
     @Generated("uuid")
     uuid : string
+
     @ManyToOne(type => UserEntity, { primary: true })
     @JoinColumn({ name: "UserID" })
     User: UserEntity;
@@ -21,8 +22,9 @@ export class BookingOrder {
     @JoinColumn({ name: "RoomID" })
     Room:Room;
 
-    assign(room_entity: Room, user_entity: UserEntity) {
-        this.User=user_entity;
-        this.Room=room_entity;
-      }
+    @Column()
+    date:Date
+    constructor(){
+        this.date=new Date(Date.now())
+    }
 }

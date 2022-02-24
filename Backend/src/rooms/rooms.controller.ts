@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { RoomsService } from './rooms.service';
 import { CreateRoomDto } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
+import { Transaction } from 'typeorm';
 
 @Controller('rooms')
 export class RoomsController {
@@ -13,11 +14,13 @@ export class RoomsController {
   }
 
   @Get()
+  @Transaction()
   findAll() {
     return this.roomsService.findAll();
   }
 
   @Get(':id')
+  @Transaction()
   findOne(@Param('id') id: string) {
     return this.roomsService.findOne(+id);
   }
