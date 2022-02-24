@@ -2,9 +2,7 @@ import { async } from "rxjs";
 import { Room } from "src/rooms/entities/room.entity";
 import { RoomsService } from "src/rooms/rooms.service";
 import { UserEntity } from "src/users/entities/user.entity";
-import { UsersService } from "src/users/users.service";
 import { Connection, Entity, EntityManager, EntityRepository, LessThan, Repository, Transaction } from "typeorm";
-import { CreateBookingorderDto } from "./dto/create-bookingorder.dto";
 import { UpdateBookingorderDto } from "./dto/update-bookingorder.dto";
 import { BookingOrder } from "./entities/bookingorder.entity";
 
@@ -23,10 +21,8 @@ export class BookingOrderRepository extends Repository<BookingOrder>{
       await connection.manager.transaction(
           async entityManager => {
             for (const entity of list){
-                const target = await entityManager.find(Room,{RoomID:entity.room_id})
-                console.log(entity.getRoomID())
+                const target = await entityManager.find(Room,{RoomID:entity.RoomID})
                 await entityManager.update(Room,target,{"isVacant":true})
-                console.log("done deleting  ")
             }
           }
       )

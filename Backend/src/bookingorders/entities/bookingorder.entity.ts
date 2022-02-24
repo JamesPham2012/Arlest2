@@ -11,18 +11,23 @@ export class BookingOrder {
     @PrimaryGeneratedColumn("uuid")
     uuid : string
 
+    @Column({nullable:true})
+    UserID : number
+    
     @Exclude()
     @ManyToOne(type => UserEntity, { primary: true })
     @JoinColumn({ name: "UserID" })
     User: UserEntity;
     
+    @Column({nullable:true})
+    RoomID : number
+    
     @Exclude()
     @ManyToOne(type => Room, { primary: true })
+    @JoinColumn({ name: "RoomID" })
     Room:Room;
-    @Column()
-    user_id? : number
-    @Column()
-    room_id? : number
+    
+    
 
     @Column({name: "in_date",type:"timestamptz"})
     check_in_date:Date
@@ -31,12 +36,5 @@ export class BookingOrder {
     @CreateDateColumn({name:"created_date"})
     date:Date
 
-    @BeforeInsert()
-    fill(){
-        this.room_id=this.Room.RoomID
-        this.user_id=this.User.UserID
-    }
-    getRoomID(){
-        return this.room_id;
-    }
+    
 }
