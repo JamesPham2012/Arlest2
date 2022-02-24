@@ -9,6 +9,7 @@ import { Room } from './entities/room.entity';
 
 @Injectable()
 export class RoomsService {
+  
   constructor(
     @InjectRepository(Room)
     private roomRepository: Repository<Room>,//cutr
@@ -42,13 +43,7 @@ export class RoomsService {
     return `This action removes a #${id} room`;
   }
 
-  async occupy(id:number){
-    var pre_entity = await this.roomRepository.findOneOrFail({RoomID:id})
-    return await this.roomRepository.update(pre_entity,{isVacant:false})
-  }
-
-  async occupyObject(object:Room){
-    var pre_entity = await this.roomRepository.findOneOrFail(object)
-    return await this.roomRepository.update(pre_entity,{isVacant:false})
-  }
+  findRoomByID(): Room | PromiseLike<Room> {
+    throw new Error("Method not implemented.");
+}
 }

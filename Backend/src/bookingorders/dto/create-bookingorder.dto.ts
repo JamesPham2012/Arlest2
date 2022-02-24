@@ -1,4 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty, PartialType } from "@nestjs/swagger";
+import { BookingOrder } from "../entities/bookingorder.entity";
 
 export class CreateBookingorderDto {
 
@@ -8,3 +9,10 @@ export class CreateBookingorderDto {
     roomid:string
 
 }   
+
+
+export class CreateBookingorderDtoResponse extends PartialType(BookingOrder){
+    userid:string
+    roomid:string
+    uuid:string
+}

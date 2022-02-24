@@ -8,6 +8,7 @@ import { UserEntity } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
+  
   constructor(@InjectRepository(UserEntity)
   private usersRepository: Repository<UserEntity>){}
 
@@ -42,4 +43,8 @@ export class UsersService {
   findbyName(){
     return this.usersRepository.find({lastName:"User1"})
   }
+
+  async findUserByID() {
+    throw new Error("Method not implemented.");
+}
 }

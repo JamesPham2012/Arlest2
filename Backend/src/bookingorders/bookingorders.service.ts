@@ -8,9 +8,7 @@ import { UserEntity } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Connection, Entity, EntityManager, Repository, Transaction, TransactionManager } from 'typeorm';
 import { BookingOrderRepository } from './bookingorders.repository';
-import { CreateBookingorderDto } from './dto/create-bookingorder.dto';
 import { UpdateBookingorderDto } from './dto/update-bookingorder.dto';
-import { BookingOrder } from './entities/bookingorder.entity';
 
 @Injectable()
 export class BookingordersService {
@@ -25,7 +23,8 @@ export class BookingordersService {
   ){}
 
   async create(userid,roomid){
-    return await this.repository.addBooking(userid,roomid,this.connection)
+    const entity = await this.repository.addBooking(userid,roomid,this.connection)
+    return entity
   }
 
   async findAll() {

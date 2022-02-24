@@ -7,14 +7,14 @@ export class UserEntity {
   UserID: number;
 
   @Column()
-  public firstName: string;
+  firstName: string;
 
   @Column()
-  public lastName: string;
+  lastName: string;
 
   @Column({ unique: true })
-  public passport: string;
+  passport: string;
+  
   @CreateDateColumn()
-  @Column({ type: 'timestamptz' })
   created_date : Date;
 }

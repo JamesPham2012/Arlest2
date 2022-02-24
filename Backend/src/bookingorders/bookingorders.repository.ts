@@ -18,6 +18,8 @@ export class BookingOrderRepository extends Repository<BookingOrder>{
     }
     async addBooking(userid,roomid,connection:Connection){
         try{
+
+            
             return await connection.manager.transaction(async entityManager => {
                 const room_entity:Room=await entityManager.findOne(Room,roomid)
                 console.log(room_entity)
@@ -27,6 +29,7 @@ export class BookingOrderRepository extends Repository<BookingOrder>{
                     console.log(new_room_entity)
                     const user_entity:UserEntity=await entityManager.findOne(UserEntity,userid)
                     const entity  = this.create({"Room":new_room_entity,"User":user_entity})
+                    console.log(entity)
                     return await entityManager.save(entity)
                 } 
                 else throw new Error("Room occupied")
@@ -36,6 +39,25 @@ export class BookingOrderRepository extends Repository<BookingOrder>{
             console.log(err)
         }
     }
+
+    // async addBookingSRP(userid,roomid,roomService:RoomsService,userService:UsersService,connection:Connection){
+    //     const room_entity:Room=await roomService.findRoomByID();// can be sent to room service later, add 1 function to check vacancy of room
+    //     const user_entity:UserEntity=await userService.findUserByID();
+    //     if (room_entity.isVacant){
+    //         try{
+    //             return await connection.manager.transaction(async entityManager => {
+    //                 await entityManager.update(Room,room_entity,{isVacant:false})
+    //                 const entity  = this.create({"Room":room_entity,"User":user_entity})
+    //                 return entityManager.save(entity)
+    //             })
+    //         }
+    //         catch(err){
+    //             throw err;
+    //         }
+            
+    //     }
+    //     else throw new Error("Room occupied")
+    // }
     
 
     async updateByUUID(uuid:string,dto:UpdateBookingorderDto){
