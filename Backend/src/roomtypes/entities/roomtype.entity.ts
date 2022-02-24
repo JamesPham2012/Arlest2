@@ -12,7 +12,7 @@ export class RoomTypeDetails {
   @Column()
   Description: string;
 
-  @OneToMany(type => Room,room => room) 
+  @OneToMany(type => Room,room => room.RoomType) 
   roomlist:Room[];
 
   

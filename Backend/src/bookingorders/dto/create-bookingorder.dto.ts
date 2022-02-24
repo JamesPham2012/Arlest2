@@ -7,12 +7,10 @@ export class CreateBookingorderDto {
     userid:string
     @ApiProperty()
     roomid:string
+    @ApiProperty({description: 'Date object in JS, converted to timestampz,usig format ISO8601 for transportation with .toISOString() '})
+    check_in_date : string; 
+    @ApiProperty({description: 'Date object in JS, converted to timestampz,using format ISO8601 for transportation with .toISOString() '})
+    check_out_date : string;
 
 }   
 
-
-export class CreateBookingorderDtoResponse extends PartialType(BookingOrder){
-    userid:string
-    roomid:string
-    uuid:string
-}

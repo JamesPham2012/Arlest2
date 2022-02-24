@@ -32,7 +32,7 @@ export class RoomsService {
   }
 
   findOne(id: number) {
-    return     this.roomRepository.findOneOrFail({RoomID:id})
+    return  this.roomRepository.findOneOrFail({RoomID:id})
   }
 
   update(id: number, updateRoomDto: UpdateRoomDto) {

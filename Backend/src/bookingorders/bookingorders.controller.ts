@@ -6,14 +6,14 @@ import { UpdateBookingorderDto } from './dto/update-bookingorder.dto';
 @Controller('bookingorders')
 export class BookingordersController {
   constructor(private readonly bookingordersService: BookingordersService) {}
-  @Get("/a11/:id")
-  getTest(@Param("id") id:string){
-    return this.bookingordersService.findOneTest(id)
+  @Get("/a11/")
+  getTest(){
+    return this.bookingordersService.triggerCronJob()
   }
 
   @Post()
   create(@Body() createBookingorderDto: CreateBookingorderDto) {
-    return this.bookingordersService.create(createBookingorderDto.userid,createBookingorderDto.roomid);
+    return this.bookingordersService.create(createBookingorderDto);
   }
 
   @Get()

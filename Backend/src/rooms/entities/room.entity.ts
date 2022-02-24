@@ -17,5 +17,6 @@ export class Room {
   @JoinColumn({name:"RoomType"})// naming convention for table 
   RoomType:RoomTypeDetails;     // naming of variable for OOP 
 
-  
+  @OneToMany(type => BookingOrder, order => order.Room)
+  OrderList: BookingOrder[]
 }

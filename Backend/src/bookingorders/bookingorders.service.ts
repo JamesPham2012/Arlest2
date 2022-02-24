@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Console } from 'console';
-import { identity } from 'rxjs';
-import { Room } from 'src/rooms/entities/room.entity';
+import { Cron, CronExpression, SchedulerRegistry } from '@nestjs/schedule';
 import { RoomsService } from 'src/rooms/rooms.service';
-import { UserEntity } from 'src/users/entities/user.entity';
 import { UsersService } from 'src/users/users.service';
 import { Connection, Entity, EntityManager, Repository, Transaction, TransactionManager } from 'typeorm';
 import { BookingOrderRepository } from './bookingorders.repository';
@@ -19,11 +15,16 @@ export class BookingordersService {
   private repository: BookingOrderRepository,
   private roomService: RoomsService,
   private userService: UsersService,
-  private connection:Connection
+  private connection:Connection,
+  private schedulerRegistry: SchedulerRegistry
   ){}
 
-  async create(userid,roomid){
-    const entity = await this.repository.addBooking(userid,roomid,this.connection)
+  @Cron(CronExpression.EVERY_10_MINUTES)
+  triggerCronJob(date:Date = new Date()) {
+      return this.repository.updateVacancy(date,this.connection)
+  }
+  async create(dto){
+    const entity = await this.repository.addBooking(dto,this.connection)
     return entity
   }
 
